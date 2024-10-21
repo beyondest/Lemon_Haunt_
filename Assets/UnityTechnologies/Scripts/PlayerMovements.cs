@@ -13,6 +13,7 @@ public class PlayerMovements : MonoBehaviour
     Vector3 m_Movement;
     Quaternion m_Rotation = Quaternion.identity;
     AudioSource m_AudioSource;
+    [SerializeField] private float horizontal;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,7 @@ public class PlayerMovements : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()  // default called 50 times per second
     {
-        float horizontal = Input.GetAxis("Horizontal");
+        horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         m_Movement.Set(horizontal, 0f, vertical);
         m_Movement.Normalize();     // Ensure Diagonal movement is not faster than orthogonal movement

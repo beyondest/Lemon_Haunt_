@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Lessons;
 public class Observer : MonoBehaviour
 {
     public Transform player;        // Use transform instead of gameobject to make it easier to determine clear line
@@ -26,6 +26,7 @@ public class Observer : MonoBehaviour
 
     private void Update()
     {
+        
         if ( m_IsPlayerInRange )
         {
             // transform.postion is the position of the observer, player.position is the position of the feet of player, so add up
