@@ -90,6 +90,7 @@ public class LightFlickerEditor : Editor
 
     void OnEnable ()
     {
+        
         m_ScriptProp = serializedObject.FindProperty ("m_Script");
         m_FlickeringLightProp = serializedObject.FindProperty ("flickeringLight");
         m_FlickeringRendererProp = serializedObject.FindProperty ("flickeringRenderer");

@@ -8,12 +8,13 @@ public class PlayerMovements : MonoBehaviour
     public float turnSpeed = 20f;       // radius
     public float moveSpeed = 10f;
     public readonly int t = 10;
+    //public AnimationCurve  curve;
+    //private float speed;
     Animator m_Animator;
     Rigidbody m_Rigidbody;
     Vector3 m_Movement;
     Quaternion m_Rotation = Quaternion.identity;
     AudioSource m_AudioSource;
-    [SerializeField] private float horizontal;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +26,7 @@ public class PlayerMovements : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()  // default called 50 times per second
     {
-        horizontal = Input.GetAxis("Horizontal");
+        float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         m_Movement.Set(horizontal, 0f, vertical);
         m_Movement.Normalize();     // Ensure Diagonal movement is not faster than orthogonal movement
@@ -47,13 +48,25 @@ public class PlayerMovements : MonoBehaviour
         //radians delta means the angle between the current forward vector and the desired forward vector
         Vector3 desiredForward = Vector3.RotateTowards(transform.forward, m_Movement, turnSpeed * Time.deltaTime, 0f);
         m_Rotation = Quaternion.LookRotation(desiredForward);
-
     }
-    void OnAnimatorMove()           //
+    void OnAnimatorMove()           
     {
         m_Rigidbody.MovePosition(m_Rigidbody.position + m_Movement * m_Animator.deltaPosition.magnitude);
         m_Rigidbody.MoveRotation(m_Rotation);
+        
+        
+
     }
+    //void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    for (int i = 0; i < curve.length - 1; i++)
+    //    {
+    //        Vector3 start = new Vector3(curve.keys[i].time, curve.keys[i].value, 0);
+    //        Vector3 end = new Vector3(curve.keys[i + 1].time, curve.keys[i + 1].value, 0);
+    //        Gizmos.DrawLine(start, end);
+    //    }
+    //}
 
     
     
